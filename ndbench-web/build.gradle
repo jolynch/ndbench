@@ -7,7 +7,8 @@ dependencies {
     compile (project(':ndbench-cass-plugins')) {
         exclude group: 'ch.qos.logback'
     }
-    compile project(':ndbench-dyno-plugins')
+    // Disabled for https://github.com/Netflix/ndbench/issues/79
+    //compile project(':ndbench-dyno-plugins')
     compile project(':ndbench-sample-plugins')
     compile project(':ndbench-es-plugins')
     compile project(':ndbench-geode-plugins')
