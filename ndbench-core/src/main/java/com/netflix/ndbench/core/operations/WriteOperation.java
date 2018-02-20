@@ -59,7 +59,9 @@ public class WriteOperation<W> implements NdBenchDriver.NdBenchOperation {
                 result = new ArrayList<>(1);
                 result.add(client.writeSingle(keys.get(0)));
             }
-            stats.recordWriteLatency((System.nanoTime() - startTime)/1000);
+            long duration = (System.nanoTime() - startTime)/1000;
+            stats.recordWriteLatency(duration);
+            driver.recordOperationDuration(startTime, this, duration);
 
             if (isAutoTuneEnabled) {
                 Double newRateLimit;

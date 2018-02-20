@@ -227,8 +227,11 @@ public class AbstractPluginTest {
             public Float getAutoTuneWriteFailureRatioThreshold() {
                 return maxAcceptableWriteFailures;
             }
-            
 
+            @Override
+            public boolean isRecordingLatenciesToLog() {
+                return false;
+            }
         };
     }
 }

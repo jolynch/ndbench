@@ -56,7 +56,10 @@ public class ReadOperation implements NdBenchDriver.NdBenchOperation {
                 // single
                 value.add(client.readSingle(keys.get(0)));
             }
+            long duration = (System.nanoTime() - startTime)/1000;
             monitor.recordReadLatency((System.nanoTime() - startTime)/1000);
+            driver.recordOperationDuration(startTime, this, duration);
+
             if (value != null) {
                 monitor.incCacheHit();
             } else {

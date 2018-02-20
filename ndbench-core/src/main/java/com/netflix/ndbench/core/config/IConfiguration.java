@@ -119,4 +119,6 @@ public interface IConfiguration {
     @DefaultValue("0.01")
     Float getAutoTuneWriteFailureRatioThreshold();
 
+    @DefaultValue("false")
+    boolean isRecordingLatenciesToLog();
 }

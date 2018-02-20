@@ -52,6 +52,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @Singleton
 public class NdBenchDriver {
     private static final Logger Logger = LoggerFactory.getLogger(NdBenchDriver.class);
+    private static final Logger LatencyLogger = LoggerFactory.getLogger("latencyLogger");
 
     private final AtomicInteger readWorkers = new AtomicInteger(0);
     private final AtomicInteger writeWorkers = new AtomicInteger(0);
@@ -521,5 +522,15 @@ public class NdBenchDriver {
                         writeRps, expectedwriteRate, bottleneckMsg);
             }
         }
+    }
+
+    public void recordOperationDuration(long startTime, NdBenchDriver.NdBenchOperation operation, long duration) {
+        if (!config.isRecordingLatenciesToLog())
+            return;
+
+        String type = "R";
+        if (operation.isWriteType())
+            type = "W";
+        LatencyLogger.info("{},{},{}", startTime, type, duration);
     }
 }
